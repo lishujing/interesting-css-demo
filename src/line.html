@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .first {
+            position: relative;
+            font-size: 16px;
+        }
+
+        /* 当用伪类的绝对定位来实现了边框后，伪类脱离文档覆盖在了 .first 和 .first-div 之上
+        而伪类不是真实的 DOM 元素，没有 JS 点击事件
+        解决方案：再写一个元素 覆盖再伪类之上，层级更高 */
+        .first .first-div:before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            /* right: -50%;
+            bottom: -50%; */
+            width: 200%;
+            height: 200%;
+            border: solid 1px red;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+            box-sizing: border-box;
+        }
+
+        .click-able {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+
+        .round {
+            position: relative;
+            font-size: 16px;
+        }
+
+        .round-div:before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            border: solid 1px red;
+            border-radius: 20px;
+            box-sizing: border-box;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 实现 0.5px 的线 -->
+    <!-- 关于 0.5px 线的重要性 
+    在 PC 端用 1px 的边框线，看起来还好，但在手机端看起来就很难看了，而 0.5px 的分割线会有种精致的感觉。
+    用普通写法 border:0.5px solid red; 
+    IPhone 端可以正常显示，但是在 android 下几乎的所有浏览器都会将 0.5 识别成 0 ; 即无边框状态 -->
+
+    <!-- 原理：
+    给需要加边框的元素插入一个伪类，伪类采用绝对定位。
+    对伪类添加 1px 边框， 再进行 0.5 倍缩放。 -->
+
+
+    <div class="first">
+        <div class="first-div">
+            Hello world!
+        </div>
+        <div class="click-able" onclick="alert('click')"></div>
+    </div>
+
+    <!-- 0.5px 圆角边框 -->
+    <div class="round">
+        <div class="round-div">您好？</div>
+    </div>
+
+</body>
+
+</html>

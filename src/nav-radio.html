@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            width: 400px;
+            height: 300px;
+            margin: 30px auto;
+            padding: 0;
+        }
+
+        input {
+            display: none;
+        }
+
+        .nav {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 50px;
+            display: flex;
+        }
+
+        .content div {
+            margin: 5px 0 0;
+            padding: 0;
+            display: none;
+            width: 100%;
+            height: 240px;
+            border: 2px solid #939393;
+        }
+
+        .nav li {
+            flex: 1;
+            list-style: none;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .nav li label.liLabel {
+            display: inline-block;
+            width: 100%;
+            line-height: 50px;
+            cursor: pointer;
+        }
+
+        /* .radio:checked~.nav li {
+            background-color: #647921;
+            color: #fff;
+        } */
+
+        #list1:checked~.nav li:first-child {
+            background-color: #647921;
+            color: #fff;
+        }
+
+        #list1:checked~.content div:first-child {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #list2:checked~.nav li:last-child {
+            background-color: #647921;
+            color: #fff;
+        }
+
+        #list2:checked~.content div:last-child {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <input class="radio" name="navRadio" id="list1" type="radio"></input>
+        <input class="radio" name="navRadio" id="list2" type="radio"></input>
+        <ul class="nav">
+            <li><label class="liLabel" for="list1">列表1</label></li>
+            <li><label class="liLabel" for="list2">列表2</label></li>
+        </ul>
+        <div class="content">
+            <div>
+                舒静,加油!
+            </div>
+            <div>
+                你好,舒静!
+            </div>
+        </div>
+    </div>
+    <script>
+        // 参考自Github -- iCSS: https://github.com/chokcoco/iCSS
+    </script>
+</body>
+
+</html>
